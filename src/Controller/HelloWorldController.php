@@ -12,6 +12,7 @@ class HelloWorldController extends AbstractController
     #[Route('/hello/world', name: 'app_hello_world')]
     public function index(MessageGenerator $messageGenerator): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
 
         $message = $messageGenerator->getHelloMessage();
         return $this->render('hello_world/index.html.twig', [
