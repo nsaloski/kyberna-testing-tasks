@@ -3,11 +3,13 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity(repositoryClass: App\Repository\UserRepository::class)]
-class User implements UserInterface
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -43,11 +45,8 @@ class User implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-
         // guarantee every user at least has ROLE_USER
-        if (empty($roles)) {
-            $roles[] = 'ROLE_USER';
-        }
+        $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
@@ -82,8 +81,11 @@ class User implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
     }
 
+    // Implementing UserInterface methods
+
     public function getUserIdentifier(): string
     {
-        // TODO: Implement getUserIdentifier() method.
+        return $this->username;
     }
 }
+

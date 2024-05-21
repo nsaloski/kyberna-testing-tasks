@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,6 +19,11 @@ class User1Type extends AbstractType
                 new NotBlank(['message' => 'Name should not be blank']),
             ],
         ])
+//            ->add('roles', ChoiceType::class, [
+//                'choices' => [
+//                    'ROLE_USER' => 'ROLE_USER',
+//                ]
+//            ])
             ->add('password', TextType::class, [
                 'constraints' => [
                     new NotBlank(['message' => 'Name should not be blank']),
