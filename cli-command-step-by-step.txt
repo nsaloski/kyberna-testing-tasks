@@ -1,0 +1,8 @@
+symfony new --webapp symfony-basic-testing-kyberna
+cd symfony-basic-testing-kyberna
+
+git add README.md
+git commit -m "Init symfony"
+git branch -M main
+git remote add origin git@github.com:nsaloski/kyberna-testing-tasks.git
+
