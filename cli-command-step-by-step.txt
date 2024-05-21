@@ -6,3 +6,6 @@ git commit -m "Init symfony"
 git branch -M main
 git remote add origin git@github.com:nsaloski/kyberna-testing-tasks.git
 
+
+git add .
+git commit -m "Set up basic controller and route to display 'Hello World'"
